@@ -18,9 +18,9 @@ __author__ = 'dank'
 from cosmo_tester.framework.testenv import TestEnvironment
 
 
-def setUp():
-    TestEnvironment().bootstrap_if_necessary()
-
-
-def tearDown():
-    TestEnvironment().teardown_if_necessary()
+# def setUp():
+#     TestEnvironment().bootstrap_if_necessary()
+#
+#
+# def tearDown():
+#     TestEnvironment().teardown_if_necessary()

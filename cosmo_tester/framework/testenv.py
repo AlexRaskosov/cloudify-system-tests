@@ -29,6 +29,7 @@ from path import path
 from cosmo_manager_rest_client.cosmo_manager_rest_client import (
     CosmoManagerRestClient)
 
+from cosmo_test_reporter.tests_logger import logger
 from cosmo_tester.framework.cfy_helper import CfyHelper
 from cosmo_tester.framework.util import (get_blueprint_path,
                                          Singleton,
@@ -50,8 +51,8 @@ for handler in root.handlers:
     root.removeHandler(handler)
 
 root.addHandler(ch)
-logger = logging.getLogger("TESTENV")
-logger.setLevel(logging.DEBUG)
+logger_env = logging.getLogger("TESTENV")
+logger_env.setLevel(logging.DEBUG)
 
 
 CLOUDIFY_TEST_MANAGEMENT_IP = 'CLOUDIFY_TEST_MANAGEMENT_IP'
@@ -208,7 +209,7 @@ class TestCase(unittest.TestCase):
 
     def setUp(self):
         self.env = TestEnvironment().setup()
-        self.logger = logging.getLogger(self._testMethodName)
+        self.logger = logger.init_logger(self._testMethodName)
         self.logger.setLevel(logging.INFO)
         self.workdir = tempfile.mkdtemp(prefix='cosmo-test-')
         self.cfy = CfyHelper(cfy_workdir=self.workdir,
