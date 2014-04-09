@@ -14,13 +14,16 @@
 #    * limitations under the License.
 
 
-from cosmo_tester.framework.testenv import TestCase
+from unittest import TestCase
+from cosmo_test_reporter.tests_logger import logger
+
+lgr = logger.init_udp_json_logger()
 
 
 class BootstrapTest(TestCase):
 
     def test_bootstrap(self):
-        self.logger.info('log_mock_testing')
+        lgr.warning('udp json test log')
 
 # class PythonWebServerTest(TestCase):
 #
